@@ -1,0 +1,9 @@
+Parts of this software are based on the Tcl/Tk software copyrighted by
+the Regents of the University of California, Sun Microsystems, Inc.,
+and other parties. The original license terms of the Tcl/Tk software
+distribution is included in the file docs/license.tcltk.
+
+Parts of this software are based on the HTML Library software
+copyrighted by Sun Microsystems, Inc. The original license terms of
+the HTML Library software distribution is included in the file
+docs/license.html_lib.
