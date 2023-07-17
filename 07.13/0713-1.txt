@@ -1,0 +1,22 @@
+https://github.com/sojugood/project.git
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/sojugood/project.git
+git push -u origin main
+
+echo "# project" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add rmorigin https://github.com/sojugood/project.git
+git push -u rmorigin main
+
+
+git branch -m main master
+git fetch origin
+git branch -u origin/master master
+git remote set-head origin -a
