@@ -1,5 +1,6 @@
-import os
-f = open('Python_for_Fun.txt')
-lines = f.readlines()
-for i in lines[-6:]:
-    print(i, end='')
+from random import choice
+
+color = open('color.txt', 'r', encoding='utf-8').read().split()
+food = open('food.txt', 'r', encoding='utf-8').read().split()
+
+print(choice(color) + ' ' + choice(food))
