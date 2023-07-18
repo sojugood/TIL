@@ -13,12 +13,11 @@
 출력
 각 테스트 케이스에 대해 마지막 데이터가 처리되는 컴퓨터 번호
 '''
-import sys
 totals = []
 T = int(input())
 
 for _ in range(T):
-    a, b = map(int, sys.stdin.readline().rstrip().split())
+    a, b = map(int, input().split())
     case = a ** b
     computer_num = (case % 10)
     totals.append(computer_num)

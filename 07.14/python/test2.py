@@ -1,2 +1,2 @@
-for i in range(1, 6):
-    print(i)
+import os
+print(os.path.exists('Python_for_Fun.txt'))
