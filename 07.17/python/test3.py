@@ -1,8 +1,15 @@
-def Y_location(n):
-    locationY = (n % 4)
-    if n % 4 == 0:
-        return 4
-    else:
-        return locationY
-    
-print(Y_location(8))
+print(3 * 2)
+print(3 ** 2)
+print((3 ** 2) // (3 * 2))
+print((3 ** 2) % (3 * 2))
+print((3 ** 2) + ((-3) ** 2))
+
+square_3 = (3 ** 2)
+square_minus3 = ((-3) ** 2)
+double_3 = (3 * 2)
+
+print(double_3)
+print(square_3)
+print(square_3 // double_3)
+print(square_3 % double_3)
+print(square_3 + square_minus3)

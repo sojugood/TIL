@@ -1,54 +1,26 @@
-'''
-2학년부터 동아리 가능
+N = str(int(input()))
+F = int(input())
 
-1, 2반 -> 소프트웨어 개발과
-3반 -> 임베디드소프트웨어 개발과
-4반 -> 인공지능소프트웨어 개발과
+a = list(N)
 
+a[-2:] = [0, 0]
 
-입력
-5 <- 학생수 P
-1 3 5 <- 학년 반 번호
-2 1 10 <- 학년 반 번호
-.
-.
-.
+a_list = [str(i) for i in a]
+a_str = ''.join(a_list)
+a = int(a_str)
 
-출력
-1. 동아리 소속 소프트웨어 개발과 학생 수
-2. 동아리 소속 임베디드소프트웨어 개발과 학생 수
-3. 동아리 소속 인공지능소프트웨어 개발과 학생 수
-4. 동아리 소속되지 않은 1학년 학생 수
-
-sol)
-학년 >= 2 이면 반으로 구분하여 1 2 3 에 출력
-학년 == 1이면 4에 출력
-'''
-
-result_1 = []
-result_2 = []
-result_3 = []
-result_4 = []
-
-P = int(input())
-
-for _ in range(P):
-    G, C, N = map(int, input().split())
-    if G >= 2:
-        if C == 1 or C == 2:
-            r1 = 1
-            result_1.append(r1)
-        elif C == 3:
-            r2 = 1
-            result_2.append(r2)
-        elif C == 4:
-            r3 = 1
-            result_3.append(r3)
+if a % F == 0:
+    c = '00'
+    print(c)
+else:
+    m = (a // F) + 1 # 몫
+    a_new = m * F # 뒤 두자리 바뀐 a값
+    a_new_list = list(str(a_new))
+    a_new_list_last2 = a_new_list[-2:]
+    A_list = [str(j) for j in a_new_list_last2]
+    A_str = ''.join(A_list)
+    A = int(A_str)
+    if A < 10:
+        print(f'0{A}')
     else:
-        r4 = 1
-        result_4.append(r4)
-
-print(len(result_1))
-print(len(result_2))
-print(len(result_3))
-print(len(result_4))
+        print(A)
