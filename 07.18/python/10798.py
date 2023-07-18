@@ -1,3 +1,16 @@
+''' 짧은 코드
+
+arr = [''] * 15
+for i in range(5):
+    s = input()
+
+    for j in range(len(s)):
+        arr[j] += s[j]
+
+print(''.join(arr))
+
+'''
+
 A = []
 
 for temp in range(5):
