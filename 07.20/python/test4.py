@@ -1,1 +1,1 @@
-print(0/3)
+print(3 and 0)
