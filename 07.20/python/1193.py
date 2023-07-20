@@ -10,4 +10,3 @@ for i in range(1, X + 1):
         else:
             print(f"{i - (s - X)}/{1 + (s - X)}")
             break
-
