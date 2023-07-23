@@ -1,9 +1,10 @@
 T = int(input())
 
 for i in range(T):
-    R, S = input().split()
-    R = int(R)
-    S = list(S)
-    print_list = []
-    for i in range(len(S)):
-        print_list.append(S[i])
+    H, W, N = map(int, input().split())
+    X = (N // H) + 1
+    Y = N % H
+    if X < 10:
+        print(f"{Y}0{X}")
+    else:
+        print(f"{Y}{X}")
