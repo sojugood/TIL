@@ -122,3 +122,37 @@ print(i, j)
 [1, 2, [30, 4]] [1, 2, [3, 4]]
 
 
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+보충수업
+
+stack(스택) : LIFO(Last In First Out)
+ ex) 쌓아올린 접시
+ - list 에서 .append(x) -> .pop()
+
+method(메서드) : 객체(str, list, dict..)에 속한 함수 -> 객체의 상태를 조작하거나 동작을 수행
+ ! 객체에 따라 적용되는 메서드가 정해져 있음(공용이 아님)
+
+find 와 index : index는 값이 없으면 오류를 발생시킴 -> 잘못된 요청에서 코드가 더 이상 실행되지 않고 오류를 알려주기 위해 필요
+
+# '{separator}'.join(iterable)
+numbers = [1, 2, 3, 4, 5]
+result = ''.join(map(str, numbers))
+       # 주어.동사()
+       # str.join(iterable)
+print(result)
+
+! 문자열 조작 메서드만의 특징
+ - string
+	1. sequence 타입 : 순서가 있고, 정렬을 보장 X, index
+	2. iterable 속성 : 순회가 가능하다, index 접근
+	3. immutable 속성 : 변경 불가능
+	# 문자열은 순서가 변경되거나 값이 변경될 때 그 의미자체가 뒤틀릴 수 있다.
+ - list -> mutable
+ - tuple -> immutable
+ # 한 개 이상의 객체를 반환하려고 하면 파이썬이 알아서 tuple로 묶어서 반환한다. ex) return a ** 2, a * 2
+
+문자열 조작 메서드 (새로운 문자열을 반환!!)
+.replace <- 원본 문자열을 바꾸는 게 아님. 새로운 변수에 할당하여 복사본을 만드는 것임
+.split() <- 문자열을 리스트로 반환('1 2 3 ~ 10' 이라면 10은 인덱스로 뽑아오기 난해함)

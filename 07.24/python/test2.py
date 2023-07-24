@@ -1,12 +1,23 @@
-a = [1, 2, [3, 4, 5]]
+N = int(input())
 
-b = [1, 2]
+nums = set(input().split())
 
-#b.append(a) # -> a 그대로 갖다 쓰는거(복사 X)
-b.extend(a) # -> a 복제본을 만들어서 새로 붙이는 거(얕은복사)
+M = int(input())
 
-a[1] = 100
-a[2][0] = 200
+nums_2 = input().split()
 
-print(a)
-print(b)
+equal_list = []
+
+result_list = []
+
+for i in nums_2:
+    if i in nums:
+        equal_list.append(i)
+    if bool(equal_list) == True:
+        result_list.append(1)
+        equal_list = []
+    else:
+        result_list.append(0)
+        equal_list = []
+
+print(*result_list)

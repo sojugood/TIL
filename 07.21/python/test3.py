@@ -1,4 +1,2 @@
-fruits = ['apple', 'banana', 'cherry']
-
-for index, fruit in enumerate(fruits, start=1):
-    print(f"인덱스 {index}: {fruit}")
+a = {1, 2, 3}
+print(a[0])
