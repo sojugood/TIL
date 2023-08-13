@@ -1,25 +1,21 @@
-def dfs(arr, i, j):
-    arr[i][j] = ' '
-    if i+1 < len(arr) and arr[i+1][j] == '|':
-        dfs(arr, i+1, j)
-    else:
+import sys
+sys.setrecursionlimit(10**6)
+def dfs(start, chk, order):
+    if start == N + 1:
         return
-N, M = map(int, input().split())
-arr = [list(input()) for _ in range(N)]
-cnt = 0
-for i in range(N):
-    tmp = 0
-    for j in range(M):
-        if arr[i][j] == '-':
-            if tmp == 0:
-                cnt += 1
-                tmp = 1
-            else:
-                continue
-        elif arr[i][j] == '|':
-            tmp = 0
-            cnt += 1
-            dfs(arr, i, j)
-        else:
-            tmp = 0
-print(cnt)
+    for end in arr[start]:
+        if end == order + 1:
+            chk[end] = end
+    dfs(start + 1, chk, order + 1)
+
+N, M, R = map(int, input().split())
+arr = [[] for _ in range(N + 1)]
+lst = [0] * (N + 1)
+for _ in range(M):
+    u, v = map(int, input().split())
+    arr[u].append(v)
+    arr[v].append(u)
+lst[R] = 1
+dfs(R, lst, 1)
+for j in range(1, N + 1):
+    print(lst[j])
