@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 N, K = map(int, input().split())
 
 val_lst = [int(input()) for _ in range(N)]
@@ -8,10 +11,8 @@ count = 0
 
 for i in val_lst:
     if K - i >= 0:
-        while True:
-            if K - i >= 0:
-                K = K - i
-                count += 1
-            else:
-                break
+        count += K // i
+        K = K % i
+    if K == 0:
+        break
 print(count)
