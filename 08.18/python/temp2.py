@@ -1,19 +1,23 @@
-def f(i):
-    if i == N:
-        return
-    global cnt
-    for j in range(0, N):
-        if arr[j][0] > arr[i][-1]:
-            break
-    else:
-        cnt += 1
-    f(i + 1)
- 
+direction = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+def dfs(i, j):
+    total = arr[i][j]
+    for dx, dy in direction:
+        for k in range(1, arr[i][j] + 1):
+            ni, nj = i + dx*k, j + dy*k
+            if 0 <= ni < N and 0 <= nj < M:
+                total += arr[ni][nj]
+    return total
+
 T = int(input())
- 
+
 for tc in range(1, T + 1):
-    N = int(input())
-    arr = [sorted(list(map(int, input().split()))) for _ in range(N)]
-    cnt = 1
-    f(0)
-    print(f"#{tc} {cnt}")
+    N, M = map(int, input().split())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    max_v = 0
+    for i in range(N):
+        for j in range(M):
+            temp = dfs(i, j)
+            if temp > max_v:
+                max_v = temp
+    print(f"#{tc} {max_v}")

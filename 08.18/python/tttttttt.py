@@ -1,42 +1,29 @@
 from collections import deque
 
-direction_1 = [(1, 0), (-1, 0), (0, 1), (0, -1), (-1, -1), (-1, 1)]
-direction_2 = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, -1), (1, 1)]
+direction = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
-def bfs(i, j, arr):
-    lst = []
-    Q = deque([(i, j, 1, arr[i][j])])
-    arr[i][j] = 0
+def bfs(i, j):
+    Q = deque([(i, j)])
+    arr[i][j] = '.'
+
     while Q:
-        x, y, depth, v = Q.popleft()
-        if depth == 4:
-            lst.append(v)
-            continue
-        if y % 2 == 0:
-            for dx, dy in direction_1:
-                ni, nj = x + dx, y + dy
-                if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] != 0:
-                    v += arr[ni][nj]
-                    Q.append((ni, nj, depth + 1, v))
-                    arr[ni][nj] = 0
-        elif y % 2 == 1:
-            for dx, dy in direction_2:
-                ni, nj = x + dx, y + dy
-                if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] != 0:
-                    v += arr[ni][nj]
-                    Q.append((ni, nj, depth + 1, v))
-                    arr[ni][nj] = 0
-    return lst
+        x, y = Q.popleft()
+        for dx, dy in direction:
+            ni, nj = x + dx, y + dy
+            if 0 <= ni < H and 0 <= nj < W and arr[ni][nj] == '#':
+                arr[ni][nj] = '.'
+                Q.append((ni, nj))
 
 
 T = int(input())
 
-for tc in range(1, T + 1):
-    N, M = map(int, input().split())
-    Arr = [list(map(int, input().split())) for _ in range(N)]
-    arr = [row[:] for row in Arr]
-    result_lst = []
-    for i in range(N):
-        for j in range(M):
-            result_lst.append((bfs(i, j, arr)))
-    print(result_lst)
+for _ in range(T):
+    H, W = map(int, input().split())
+    arr = [list(map(str, input().strip())) for _ in range(H)]
+    cnt = 0
+    for i in range(H):
+        for j in range(W):
+            if arr[i][j] == '#':
+                cnt += 1
+                bfs(i, j)
+    print(cnt)
