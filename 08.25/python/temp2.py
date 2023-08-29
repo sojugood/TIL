@@ -1,12 +1,16 @@
-arr=[]
-arr_cnt=[0]*26
-n=input()
-for i in range(97,123,1):
-    arr.append(i)
+import sys
+input = sys.stdin.readline
 
-for i in n:
-    for j in range(26):
-        if ord(i) == arr[j]:
-            arr_cnt[j] += 1
-        else : arr_cnt[j] += 0
-print(*arr_cnt)
+N, M = map(int, input().split())
+
+arr = [list(map(int, input().split())) for _ in range(N)]
+
+K = int(input())
+
+for _ in range(K):
+    i, j, x, y = map(int, input().split())
+    res = 0
+    for k in range(i - 1, x):
+        for l in range(j - 1, y):
+            res += arr[k][l]
+    print(res)
