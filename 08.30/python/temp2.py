@@ -1,20 +1,22 @@
 from collections import deque
-import math
 
-n = int(input())
-queue = deque([(n, 0)])
+N = int(input())
 
-visited = set()
+q = deque([])
 
-while queue:
-    value, steps = queue.popleft()
-
-    if value == 0:
-        print(steps)
-        break
-
-    for i in range(1, int(math.sqrt(value)) + 1):
-        next_value = value - i*i
-        if next_value >= 0 and next_value not in visited:
-            queue.append((next_value, steps + 1))
-            visited.add(next_value)
+for _ in range(N):
+    x = int(input())
+    if x != 0:
+        q.append(x)
+    else:
+        if q:
+            q = deque(sorted(q))
+            tmp = q.popleft()
+            while True:
+                v = q.popleft()
+                if v != tmp:
+                    q.appendleft(v)
+                    break
+            print(tmp)
+        else:
+            print(0)
