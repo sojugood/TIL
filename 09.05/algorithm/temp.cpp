@@ -9,59 +9,59 @@ tuple<int, int> direction[] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
 int N, M;
 
-int bfs(int i, int j, vector<vector<int>>& arr) {
-    queue<tuple<int, int>> q;
-
-    int cnt = 1;
-
-    arr[i][j] = 0;
-    q.push({i, j});
+int bfs(int i, int j, vector<vector<char>>& arr) {
+    queue<tuple<int, int, int>> q;
+    vector<vector<int>> visited(N, vector<int>(M, 0));
+    visited[i][j] = 1;
+    q.push({i, j, 0});
+    int res = INT_MAX;
 
     while (!q.empty()) {
-        int x, y;
-        tie(x, y) = q.front();
+        int x, y, cnt;
+        tie(x, y, cnt) = q.front();
         q.pop();
+
+        if (arr[x][y] == 'W') {
+            res = min(res, cnt);
+        }
 
         for (auto [dx, dy] : direction) {
             int nx = x + dx;
             int ny = y + dy;
-            if (0 <= nx && N > nx && 0 <= ny && M > ny) {
-                if (arr[nx][ny] == 1) {
-                    cnt += 1;
-                    arr[nx][ny] = 0;
-                    q.push({nx, ny});
-                }
+            if (0 <= nx && N > nx && 0 <= ny && M > ny && !visited[nx][ny]) {
+                visited[nx][ny] = 1;
+                q.push({nx, ny, cnt + 1});
             }
         }
     }
-    return cnt;
+    return res;
 }
 
 int main() {
-    cin >> N >> M;
+    int T;
+    cin >> T;
 
-    vector<vector<int>> arr(N, vector<int>(M));
+    for (int tc = 1; tc <= T; ++tc) {
+        cin >> N >> M;
 
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < M; ++j) {
-            cin >> arr[i][j];
-        }
-    }
+        vector<vector<char>> arr(N, vector<char>(M));
 
-    int ans = 0;
-    int res = 0;
-
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < M; ++j) {
-            if (arr[i][j] == 1) {
-                ++ans;
-                res = max(res, bfs(i, j, arr));
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < M; ++j) {
+                cin >> arr[i][j];
             }
         }
+
+        int result = 0;
+
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < M; ++j) {
+                if (arr[i][j] == 'L') {
+                    result += bfs(i, j, arr);
+                }
+            }
+        }
+        cout << "#" << tc << " " << result << endl;
     }
-
-    cout << ans << endl;
-    cout << res << endl;
-
     return 0;
 }

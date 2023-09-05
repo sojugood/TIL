@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 자손 결합자는 모든 하위 레벨에 적용되고
+    자식 결합자는 한 단계 하위 레벨에만 적용됨 */
+    div p {
+      color: blue;
+      margin-left: 40px;
+    }
+
+    div > p {
+      color: red;
+      margin-left: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>자식</p>
+    <span>
+      <p>손자</p>
+    </span>
+    <p>자식</p>
+  </div>
+</body>
+
+</html>
