@@ -1,0 +1,69 @@
+Box 구성 요소
+
+margin(공백) - border(테두리) - padding(공백) - content(콘텐츠)
+
+width & height 속성 : 요소의 너비와 높이를 지정. 이 때 지정되는 요소의 너비와 높이는 콘텐츠 영역을 대상으로 함
+
+box-sizing : default = content-box / border-box
+
+
+- Normal flow
+
+Inline : 자신의 크기만큼만 차지함(방향이 옆으로) a, img, span
+ - width와 height 속성을 사용할 수 없음
+
+Block : 한 줄 전체를 차지함(방향이 아래로) h, p, div
+
+inline-block : inline과 block 요소 사이의 중간 지점을 제공하는 display 값
+ - block 요소의 특징을 가짐
+  - width 및 height 속성 사용 가능
+  - padding, margin 및 border 로 인해 다른 요소가 밀려남
+ ! 요소가 줄 바꿈 되는 것을 원하지 않으면서 너비와 높이를 적용하고 싶은 경우에 사용
+
+
+none : 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음
+
+flex
+
+grid
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+CSS Layout : 각 요소의 위치와 크기를 조정하여 웹 페이지의 디자인을 결정하는 것
+
+CSS Position : 요소를 Normal Flow에서 제거하여 다른 위치로 배치하는 것
+
+Position 유형
+ 1. static : 기본값
+ 2. relative : static 시절의 위치를 기준으로(원래 자신의 위치)
+ 3. absolute : 자신의 영역을 버림(이로 인해 다른 영역이 영향을 받을 수 있음) / 이동 기준점을 static이 아닌 부모를 찾아감
+ 4. fixed : 브라우저 화면에 고정(현재 화면영역(viewport)을 기준으로 이동)
+ 5. sticky : 특정 임계점에 도달했을 때 fixed의 특성을 가짐 / 다음 sticky 요소가 나오면 이전 sticky 요소의 자리를 대체
+
+z-index : 정수 값을 사용해 z축 순서를 지정 / 더 큰 값을 가진 요소가 작은 값의 요소를 덮음
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+CSS Flexbox : 요소를 행과 열 형태로 배치하는 1차원 레이아웃 방식 -> '공간 배열' & '정렬'
+
+Flexbox 기본 사항
+
+ - Flex Container(부모) : 이 컨테이너의 1차 자식 요소들이 Flex Item이 됨
+ - Flex Item(자식)
+
+main axis(수평)
+cross axis(main axis에 수직인 축)
+
+메인축 정렬
+justify-content
+
+교차축 정렬
+align-content : 다중 행 전체
+align-items : 한 행만
+align-self : 하나의 item만(클래스로 지정)
+
+
+목적에 따른 분류
+ - 배치 : flex-direction / flex-wrap
+ - 공간 분배 : justify-content / align-content
+ - 정렬 : align-items / align-self

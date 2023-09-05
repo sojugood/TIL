@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      padding: 20px;
+      height: 500px;
+      width: 800px;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+    }
+    .move1 {
+      display: flex;
+      justify-content: space-between;
+    }
+    .move2 {
+      padding-left: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .move3 {
+      margin-top: 0px;
+      display: flex;
+      justify-content: right;
+    }
+    .item1 {
+      margin-bottom: 0px;
+      padding: 0px;
+    }
+    .item2 {
+      margin: 0px;
+      padding: 0px;
+    }
+    .line {
+      border-top: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="move1">
+      <img src="profile.jpg" alt="Profile Image">
+      <h2>Company Name</h2>
+    </div>
+    <div class="move1">
+      <div class="move2">
+        <h3 class="item1">한글 이름</h3>
+        <h4 class="item2">English Name</h4>
+      </div>
+      <div>
+        <p class="item1">Phone Number</p>
+        <p class="item2">Email</p>
+      </div>
+    </div>
+    <hr>
+    <div class="line">
+      <p class="move3">description</p>
+    </div>
+  </div>
+</body>
+</html>
