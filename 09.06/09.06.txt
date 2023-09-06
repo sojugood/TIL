@@ -1,0 +1,11 @@
+Bootstrap
+
+1rem = 16px
+
+carousel / modal : button의 target 이름이랑 id의 일치 여부 중요
+
+
+semantic element : div랑 기능 동일 / 태그 명을 통한 의미를 부여하기 위한 것
+
+
+data-bs-theme="dark"
