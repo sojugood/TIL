@@ -3,16 +3,11 @@
 using namespace std;
 
 int main() {
-	int temp = 0;
-	for (int i = 0; i < 5; ++i) {
-		int score;
-		cin >> score;
-		if (score < 40) {
-			score = 40;
-		}
-		temp += score;
-	}
+	int N;
+	cin >> N;
 
-	cout << temp / 5 << endl;
+	for (int i = N; i > 0; i--) {
+		cout << i << endl;
+	}
 	return 0;
 }
