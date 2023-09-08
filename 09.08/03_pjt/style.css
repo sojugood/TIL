@@ -1,0 +1,258 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* frontpage */
+
+.frontpage {
+  padding-top: 56px;
+  height: 100vh;
+  background-color: lightgray;
+  background-image: url(./frontpage.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-wrapper {
+  text-align: center;
+}
+
+.content-wrapper h1{
+  font-size: 4.5rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.content-wrapper p {
+  font-size: 1.4rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.content-wrapper h1, .content-wrapper p {
+  background-color: rgba(120, 204, 148, 0.911); 
+  padding: 1.0rem;
+  border-radius: 15px;
+}
+
+.btn-primary {
+  background-color: rgba(120, 204, 148, 0.911);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  font-size: 1.4rem;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* intro */
+
+.intro {
+  padding-top: 56px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(163, 212, 179, 0.911);
+}
+
+.temp-icon {
+  width: 80px; /* 아이콘의 크기 */
+  height: 80px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 가운데 정렬 */
+  margin-bottom: 40px; /* 각 항목 사이의 간격 */
+}
+
+.info-icon {
+  width: 30px; /* 아이콘의 크기 */
+  height: 30px;
+  margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 */
+}
+
+.intro-content {
+  max-width: 800px;
+  text-align: center;
+}
+
+.intro-content h2 {
+  font-size: 3.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.info-item span {
+  font-size: 2.2rem;
+  color: #666;
+}
+
+
+
+.project {
+  padding-top: 56px;
+  height: 100vh;
+  background-color: rgba(163, 212, 179, 0.911);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-title {
+  font-size: 3.5rem;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  color: #333;
+}
+
+.project-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start; 
+  gap: 30px;
+  max-width: 1200px;
+}
+
+.project-item {
+  flex-basis: calc(50% - 15px);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+  background-color: rgb(174, 245, 195);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+}
+
+.project-image {
+  max-width: 10%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.project-name {
+  font-size: 2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+
+.skills {
+  padding-top: 56px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.skills-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;  /* 아이콘들의 최대 너비입니다. 필요에 따라 조절하세요. */
+}
+
+.skill-item {
+  flex: 1;
+  text-align: center;
+  margin: 20px;  /* 각 아이콘 사이의 간격입니다. 필요에 따라 조절하세요. */
+}
+
+.skills-title {
+  font-size: 3.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #333;
+}
+
+.skill-item p {
+  margin-top: 10px;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.skill-icon {
+  width: 200px;  /* 아이콘의 크기입니다. 필요에 따라 조절하세요. */
+  height: auto;
+}
+
+
+.footer {
+  height: 50px;
+  background-color: black;
+  color: white;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*... 기존 스타일 ...*/
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 767.98px) {
+  .content-wrapper h1 {
+    font-size: 2.5rem;
+  }
+
+  .content-wrapper p {
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+
+  .intro-content h2 {
+    font-size: 2rem;
+  }
+
+  .info-item span {
+    font-size: 1.2rem;
+  }
+
+  .project-title, .skills-title {
+    font-size: 2.5rem;
+  }
+
+  .project-name {
+    font-size: 1.5rem;
+  }
+
+  .project-description, .skill-item p {
+    font-size: 0.9rem;
+  }
+
+  .skill-icon {
+    width: 140px;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+  }
+}
