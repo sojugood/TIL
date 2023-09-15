@@ -60,3 +60,4 @@ Field lookups : 특정 레코드에 대한 조건을 설정하는 방법
  ex) Article.objects.filter(content__contains='dja')
 		     컬럼 명__조회명
 
+t
