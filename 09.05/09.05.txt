@@ -23,6 +23,7 @@ inline-block : inline과 block 요소 사이의 중간 지점을 제공하는 di
 
 none : 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음
 
+
 flex
 
 grid
