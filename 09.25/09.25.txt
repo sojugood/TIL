@@ -1,0 +1,8 @@
+NoReverseMatch 오류 -> 무조건 URL 문제임
+
+
+create 로직을 구현하기 위해 필요한 view 함수의 개수 : 2개
+ new, create
+
+update 로직을 구현하기 위해 필요한 view 함수의 개수 : 2개
+ edit, update
