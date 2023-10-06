@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .separator {
+        border-left: 1px solid #000;  /* 세로줄 스타일 */
+        height: 20px;  /* 세로줄 높이 */
+        display: inline-block;  /* 세로줄을 인라인 요소로 만들기 */
+        vertical-align: middle;  /* 수직 정렬 */
+    }
+    {% block style %}
+    {% endblock style %}
+</style>
+</head>
+<body>
+  <a href="{% url "problem1" %}">문제1</a>
+  <span class="separator"></span>
+  <a href="{% url "problem2" %}">문제2</a>
+  <span class="separator"></span>
+  <a href="{% url "problem3" %}">문제3</a>
+  <span class="separator"></span>
+  <a href="{% url "problem4" %}">문제4</a>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>
