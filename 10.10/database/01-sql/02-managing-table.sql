@@ -36,3 +36,5 @@ DROP COLUMN
 
 SELECT sqlite_version();
 
+DROP TABLE
+  examples;
