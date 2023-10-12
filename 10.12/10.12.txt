@@ -1,0 +1,21 @@
+Article(N) - User(1)
+ 0개 이상의 게시글은 1명의 회원에 의해 작성될 수 있다.
+
+Comment(N) - User(1)
+ 0개 이상의 댓글은 1명의 회원에 의해 작성될 수 있다.
+
+
+User 모델을 참조하는 2가지 방법
+ django 프로젝트의 내부적인 구동 순서와 반환 값에 따른 이유
+ ! User 모델을 직접 참조 X
+
+ get_user_model()
+  - 반환 값 : User Object(객체)
+  - 사용 위치 : models.py가 아닌 다른 모든 위치
+
+ settings.AUTH_USER_MODEL
+  - 반환 값 : accounts.User(문자열)
+  - 사용 위치 : models.py
+
+게시글 작성 시 작성자 정보가 함께 저장될 수 있도록 save의 commit 옵션 활용
+

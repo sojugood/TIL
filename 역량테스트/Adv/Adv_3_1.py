@@ -1,25 +1,42 @@
-def dfs(node, connect_matrix, possible_group, group):
-    possible_group.add(node)
-    for i in range(len(connect_matrix)):
-        if connect_matrix[node][i] == 1 and i not in possible_group and i in group:
-            dfs(i, connect_matrix, possible_group, group)
-    return possible_group
+from collections import deque
 
-def find_min_diff(connect_matrix, value_list):
-    N = len(connect_matrix)
-    min_diff = float('inf')
-    for i in range(1, 2 ** N - 1):
-        group_A = [j for j in range(N) if i & (1 << j)]
-        group_B = [j for j in range(N) if j not in group_A]
-        if set(group_A) == dfs(group_A[0], connect_matrix, set(), group_A) and set(group_B) == dfs(group_B[0], connect_matrix, set(), group_B):
-            diff = abs(sum(value_list[k] for k in group_A) - sum(value_list[k] for k in group_B))
-            min_diff = min(min_diff, diff)
-    return min_diff
+def bfs(g):
+    q = deque([])
+    visited = [0] * N
+    visited[g[0]] = 1
+    q.append(g[0])
+    cnt = 1
+    while q:
+        next = q.popleft()
+        for end in lst[next]:
+            if end in g and not visited[end]:
+                visited[end] = 1
+                q.append(end)
+                cnt += 1
+    if cnt == len(g):
+        return True
+    return False
+
 
 T = int(input())
+
 for tc in range(1, T + 1):
     N = int(input())
-    Rrc = [list(map(int, input().split())) for _ in range(N)]
-    Pi = list(map(int, input().split()))
-    result = find_min_diff(Rrc, Pi)
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    people = list(map(int, input().split()))
+    lst = [[] for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if arr[i][j] == 1:
+                lst[i].append(j)
+
+    result = float("inf")
+
+    for i in range(1, 1 << N - 1):
+        group1 = [j for j in range(N) if i & 1 << j]
+        group2 = [j for j in range(N) if not i & 1 << j]
+        if bfs(group1) and bfs(group2):
+            diff = abs(sum(people[i] for i in group1) - sum(people[i] for i in group2))
+            result = min(result, diff)
+
     print(f"#{tc} {result}")
