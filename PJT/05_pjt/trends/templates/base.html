@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .separator {
+        border-left: 1px solid #000;  /* 세로줄 스타일 */
+        height: 20px;  /* 세로줄 높이 */
+        display: inline-block;  /* 세로줄을 인라인 요소로 만들기 */
+        vertical-align: middle;  /* 수직 정렬 */
+    }
+    {% block style %}
+    {% endblock style %}
+  </style>
+</head>
+<body>
+  <h1>트렌드 분석 애플리케이션</h1>
+  <a href="{% url "keyword" %}">키워드 추가</a>
+  <span class="separator"></span>
+  <a href="{% url "crawling" %}">크롤링</a>
+  <span class="separator"></span>
+  <a href="{% url "crawling_histogram" %}">히스토그램</a>
+  <span class="separator"></span>
+  <a href="{% url "crawling_advanced" %}">지난 1년 크롤링</a>
+  {% block content %}
+  {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>키워드 추가</h2>
+<form action="{% url 'keyword' %}" method="POST">
+  {% csrf_token %}
+  <label for="name">키워드:</label>
+  <input type="text" id="name" name="name" required>
+  <input type="submit" value="생성하기">
+</form>
+<p><hr></p>
+<h3>분석을 원하는 키워드 목록</h3>
+{% for keyword in keywords %}
+{{ forloop.counter }}번째 키워드 - {{ keyword.name }}
+<p></p>
+<form action="{% url 'keyword_detail' keyword.pk %}">
+  <input type="submit" value="삭제하기">
+</form>
+<hr>
+
+{% endfor %}
+{% endblock content %}
