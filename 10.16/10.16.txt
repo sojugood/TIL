@@ -1,0 +1,37 @@
+Many to many relationships
+
+N:M or M:N
+
+한 테이블의 0개 이상의 레코드가 다른 테이블의 0개 이상의 레코드와 관련된 경우 -> 양쪽 모두에서 N:1 관계를 가짐
+
+
+중개 모델(ex_예약 테이블)
+
+Django에서는 'ManyToManyField'로 중개모델을 자동으로 생성
+
+
+'through' argument
+ - 중개 테이블에 '추가 데이터'를 사용해 M:N 관계를 형성하려는 경우에 사용
+
+
+M:N 관계 주요 사항
+ - M:N 관계로 맺어진 두 테이블에는 물리적인 변화가 없음
+ - 'ManyToManyField'는 중개 테이블을 자동으로 생성
+ - 'ManyToManyField'는 M:N 관계를 맺는 두 모델 어디에 위치해도 상관 없음
+  - 대신 필드 작성 위치에 따라 참조와 역참조 방향을 주의할 것
+ - N:1은 완전한 종속의 관계였지만 M:N은 종속적인 관계가 아니며 '의사에게 진찰받는 환자 & 환자를 진찰하는 의사' 이렇게 2가지 형태 모두 표현 가능
+
+
+ManyToManyField(to, **options)
+
+options
+ 1. related_name : 역참조시 사용하는 manager name을 변경
+ 2. symmetrical : 'ManyToManyField'가 동일한 모델을 가리키는 정의에서만 사용(기본 값 : True)
+ 3. through
+
+M:N에서의 methods
+ - add() : 지정된 객체를 관련 객체 집합에 추가(이미 존재하는 관계에 사용하면 관계가 복제되지 않음)
+ - remove() : 관련 객체 집합에서 지정된 모델 객체를 제거
+
+
+역참조 매니저 충돌 -> related_name 사용
