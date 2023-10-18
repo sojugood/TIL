@@ -1,0 +1,74 @@
+REST API
+
+API(Application Programming Interface) : 애플리케이션과 프로그래밍으로 소통하는 방법
+ -> 클라이언트 - 서버처럼 서로 다른 프로그램에서 요청과 응답을 받을 수 있도록 만든 체계
+
+REST : API Server를 개발하기 위한 일종의 소프트웨어 설계 방법론 "약속(규칙X)"
+
+RESTful API
+ - REST 원리를 따르는 시스템을 RESTful 하다고 부름
+ - "자원을 정의" 하고 "자원에 대한 주소를 지정" 하는 전반적인 방법을 서술
+
+REST API : REST라는 설계 디자인 약속을 지켜 구현한 API
+
+
+REST에서 자원을 정의하고 주소를 지정하는 방법
+ 1. 자원의 식별
+  - URI
+
+ 2. 자원의 행위
+  - HTTP Methods
+
+ 3. 자원의 표현
+  - JSON 데이터
+  - 궁극적으로 표현되는 데이터 결과물
+
+
+자원의 식별
+
+URI(통합 자원 식별자) : 인터넷에서 리소스(자원)를 식별하는 문자열
+ -> 가장 일반적인 URI는 웹 주소로 알려진 URL
+
+URL(통합 자원 위치) : 웹에서 주어진 리소스의 주소
+ -> 네트워크 상에 리소스가 어디 있는지를 알려주기 위한 약속
+
+Schema(or Protocol)
+ - 브라우저가 리소스를 요청하는 데 사용해야 하는 규약
+ - URL의 첫 부분은 브라우저가 어떤 규약을 사용하는지를 나타냄
+ - 기본적으로 웹은 HTTP(S)를 요구하며 메일을 열기위한 mailto:, 파일을 전송하기 위한 ftp: 등 다른 프로토콜도 존재
+
+Domain Name
+
+Port
+
+Path
+
+Parameters
+ - 웹 서버에 제공하는 추가적인 데이터
+ - '&' 기호로 구분되는 key-value 쌍 목록
+ - 서버는 리소스를 응답하기 전에 이러한 파라미터를 사용하여 추가 작업을 수행할 수 있음
+
+Anchor
+ - 일종의 "북마크"를 나타내며 브라우저에 해당 지점에 있는 콘텐츠를 표시
+
+
+
+HTTP Request Methods : 리소스에 대한 행위(수행하고자 하는 동작)를 정의
+ -> HTTP verbs 라고도 함
+
+
+Django REST framework
+
+
+Serialization(직렬화) : 여러 시스템에서 활용하기 위해 데이터 구조나 객체 상태를 나중에 재구성할 수 있는 포맷으로 변환하는 과정
+ -> 어떠한 언어나 환경에서도 나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정
+
+
+DRF with Single Model
+
+ModelSerializer : Django 모델과 연결된 Serializer 클래스
+
+'api_view' decorator
+ - DRF view 함수에서는 필수로 작성되며 view 함수를 실행하기 전 HTTP 메서드를 확인
+ - 기본적으로 GET 메서드만 허용되며 다른 메서드 요청에 대해서는 405 Method Not Allowed로 응답
+ - DRF view 함수가 응답해야 하는 HTTP 메서드 목록을 작성
