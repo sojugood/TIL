@@ -6,14 +6,12 @@
 
 using namespace std;
 
-struct Result
-{
+struct Result {
     int row;
     int col;
 };
 
-struct Bacteria
-{
+struct Bacteria {
     int id;
     int size;
     int time;
