@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <section>
+    <article class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </article>
+    <!-- 아래에 새로운 card 생성 및 추가 -->
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script>
+    // 기존의 article.card 요소 선택
+    const oldArticle = document.querySelector('article.card');
+  
+    // 새로운 article.card 요소 생성
+    const newArticle = document.createElement('article');
+    newArticle.classList.add('card');
+    newArticle.style.width = '18rem';
+  
+    // card-body div 생성
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+  
+    // card-title h5 생성 및 내용 추가
+    const cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = 'New Card Title';
+  
+    // card-text p 생성 및 내용 추가
+    const cardText = document.createElement('p');
+    cardText.classList.add('card-text');
+    cardText.textContent = 'This is a new card replacing the old one with fresh content.';
+  
+    // card-body에 card-title과 card-text 추가
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+  
+    // newArticle에 card-body 추가
+    newArticle.appendChild(cardBody);
+  
+    // 기존의 article.card 삭제
+    oldArticle.remove();
+  
+    // section에 새로운 article.card 추가
+    document.querySelector('section').appendChild(newArticle);
+  </script>
+  
+</body>
+</html>

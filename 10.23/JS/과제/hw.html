@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>나의 포트폴리오</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>안녕하세요, 제 이름은 <b id="name">홍길동</b>입니다.</h1>
+  
+  <img src="" alt="" width="200">
+  
+  <h2>소개</h2>
+  <p>저는 <b id="job">[직업/전공]</b>으로 일하고 있습니다. <b id="experience">[간단한 경력/학력]</b>을 가지고 있으며, <b>[특기 또는 관심 분야]</b>에 대해 꾸준히 공부하고 있습니다.</p>
+  
+  <h2>프로젝트</h2>
+  <ul id="list-group">
+    <li><b>프로젝트 1:</b> <span class="project-1">[프로젝트 1 제목]</span></li>
+    <li><b>프로젝트 2:</b> <span class="project-2">[프로젝트 2 제목]</span></li>
+    <li><b>프로젝트 3:</b> <span class="project-3">[프로젝트 3 제목]</span></li>
+  </ul>
+  
+  <h2>연락처</h2>
+  <p>이메일: <b id="email">[이메일 주소]</b></p>
+  <p>전화번호: <b id="phone">[전화번호]</b></p>
+  
+  <script>
+    const nameTag = document.querySelector('#name')
+    nameTag.textContent = '심상익'
+    const jobTag = document.querySelector('#job')
+    jobTag.textContent = '싸피교육생'
+    const experienceTag = document.querySelector('#experience')
+    experienceTag.textContent = '약 4개월의 경력'
+    const emailTag = document.querySelector('#email')
+    emailTag.textContent = 'tkddlrtla666@gmail.com'
+    const phoneTag = document.querySelector('#phone')
+    phoneTag.textContent = '010-1234-5678'
+
+    const imgTag = document.querySelector('img')
+    imgTag.setAttribute('src', 'https://png.pngtree.com/png-vector/20191115/ourmid/pngtree-beautiful-profile-line-vector-icon-png-image_1990469.jpg')
+    imgTag.setAttribute('alt', '프로필 이미지입니다.')
+
+    const bodyTag = document.querySelector('body')
+    bodyTag.classList.add('container')
+    const h1Tag = document.querySelector('h1')
+    h1Tag.classList.add('title')
+    imgTag.classList.add('img')
+
+    const elements = [nameTag, jobTag, experienceTag, emailTag, phoneTag]
+
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].classList.add('highlight');
+    }
+
+    const snspTag = document.createElement('p')
+    snspTag.textContent = 'SNS: '
+    const snsTag = document.createElement('b')
+    snsTag.textContent = 'example@sns'
+    snsTag.classList.add('highlight')
+    snspTag.appendChild(snsTag)
+    bodyTag.appendChild(snspTag)
+  </script>
+</body>
+</html>
