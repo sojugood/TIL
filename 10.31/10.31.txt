@@ -1,0 +1,12 @@
+Ajax와 서버
+
+Ajax : JavaScript의 비동기 구조와 XML 객체를 활용해 비동기적으로 서버와 통신하여 웹 페이지의 일부분만을 업데이트하는 웹 개발 기술
+
+ID
+admin
+user1
+user2
+
+PW
+ssafy1234
+
