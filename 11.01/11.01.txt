@@ -1,0 +1,57 @@
+Front-end Development
+ - 웹사이트와 웹 애플리케이션의 사용자 인터페이스(UI)와 사용자 경험(UX)을 만들고 디자인하는 것
+ -> HTML, CSS, JavaScript 등을 활용하여 사용자가 직접 상호작용하는 부분을 개발
+
+Client-side frameworks
+ - 클라이언트 측에서 UI와 상호작용을 개발하기 위해 사용되는 JavaScript 기반 프레임워크
+
+Single Page Application(SPA) : 페이지 한 개로 구성된 웹 애플리케이션
+
+ 1. 서버로부터 필요한 모든 정적 HTML을 처음에 한 번 가져옴
+ 2. 브라우저가 페이지를 로드하면 Vue 프레임워크는 각 HTML 요소에 적절한 JavaScript 코드를 실행(이벤트에 응답, 데이터 요청 후 UI 업데이트 등)
+ - ex) 페이지 간 이동 시, 페이지 갱신에 필요한 데이터만을 JSON으로 전달받아 페이지 일부 갱신
+ - Google Maps, 인스타그램 등의 서비스에서 갱신 시 새로고침이 없는 이유
+
+웹 애플리케이션의 초기 로딩 후 새로운 페이지 요청 없이 동적으로 화면을 갱신하며 사용자와 상호작용하는 웹 애플리케이션 -> CSR 방식
+
+Client-side Rendering(CSR) : 클라이언트에서 화면을 렌더링 하는 방식
+
+ 1. 브라우저는 페이지에 필요한 최소한의 HTML 페이지와 JavaScript를 다운로드
+ 2. 그런 다음 JavaScript를 사용하여 DOM을 업데이트하고 페이지를 렌더링
+
+장점
+ 1. 빠른 속도
+ 2. 사용자 경험
+ 3. Front-end와 Back-end의 명확한 분리
+
+단점
+ 1. 초기 구동속도가 느림
+ 2. SEO(검색 엔진 최적화) 문제
+
+
+Vue : 사용자 인터페이스를 구축하기 위한 JavaScript 프레임워크
+
+Vue의 2가지 핵심 기능
+ 1. 선언적 렌더링
+  - HTML을 확장하는 템플릿 구문을 사용하여 HTML이 JavaScript 데이터를 기반으로 어떻게 보이는지 설명할 수 있음
+ 2. 반응형
+  - JavaScript 상태 변경사항을 자동으로 추적하고 변경사항이 발생할 때 DOM을 효율적으로 업데이트
+
+
+Application instance
+ - 모든 Vue 애플리케이션은 createApp 함수로 새 Application instance를 생성하는 것으로 시작
+
+.app.mount()
+ - 컨테이너 요소에 애플리케이션 인스턴스를 탑재(연결)
+ - 각 앱 인스턴스에 대해 mount()는 한 번만 호출할 수 있음
+
+ref() : 반응형 상태(데이터)를 선언하는 함수
+ -> 반응형을 가지는 참조 변수를 만드는 것
+ - 인자를 받아 .value 속성이 있는 ref 객체로 래핑(wrapping)하여 반환
+ - ref로 선언된 변수의 값이 변경되면, 해당 값을 사용하는 템플릿에서 자동으로 업데이트
+ - 인자는 어떠한 타입도 가능
+ - 템플릿의 참조에 접근하려면 setup 함수에서 선언 및 반환 필요
+ - !!템플릿에서 ref를 사용할 때는 .value를 작성할 필요 없음(automatically unwrapped)
+
+
+
