@@ -1,0 +1,76 @@
+Routing : 네트워크에서 경로를 선택하는 프로세스
+ -> 웹 애플리케이션에서 다른 페이지 간의 전환과 경로를 관리하는 기술
+
+Vue Router : Vue 공식 라우터
+
+라우팅 기본
+ 1. index.js에 라우터 관련 설정 작성(주소, 이름, 컴포넌트)
+ 2. RouterLink의 'to' 속성으로 index.js에서 정의한 주소 속성 값(path)을 사용
+
+Named Routes : 경로에 이름을 지정하는 라우팅
+ - name 속성 값에 경로에 대한 이름을 지정
+ - 경로에 연결하려면 RouterLink에 v-bind를 사용해 'to' prop 객체로 전달
+
+Named Routes 장점
+ - 하드 코딩 된 URL을 사용하지 않아도 됨
+ - URL 입력 시 오타 방지
+
+
+Dynamic Route Mathching with Params
+매개 변수를 사용한 동적 경로 매칭
+
+
+Programmatic Navigation
+
+프로그래밍 방식 네비게이션
+ 1. 다른 위치로 이동하기 : router.push()
+ 2. 현재 위치 바꾸기 : router.replace()
+
+router.push()
+ - 다른 URL로 이동하는 메서드
+ - 새 항목을 history stack에 push하므로 사용자가 브라우저 뒤로 가기 버튼을 클릭하면 이전 URL로 이동할 수 있음
+ - RouterLink를 클릭했을 때 내부적으로 호출되는 메서드
+
+router.replace()
+ - push 메서드와 달리 history stack에 새로운 항목을 push하지 않고 다른 URL로 이동(이동 전 URL로 뒤로 가기 불가)
+
+
+Navigation Guard
+ - Vue router를 통해 특정 URL에 접근할 때 다른 URL로 redirect를 하거나 취소하여 네비게이션을 보호
+ -> ex) 인증 정보가 없으면 특정 페이지에 접근하지 못하게 함
+
+Navigation Guard 종류
+ 1. Globally(전역 가드)
+  - 애플리케이션 전역에서 동작
+  - index.js에서 정의
+ 
+ 2. Per-route(라우터 가드)
+  - 특정 route에서만 동작
+  - index.js의 각 routes에 정의
+
+ 3. In-component(컴포넌트 가드)
+  - 특정 컴포넌트 내에서만 동작
+  - 컴포넌트 Script에 정의
+
+
+Globally Guard
+
+router.beforeEach() : 다른 URL로 이동하기 직전에 실행되는 함수
+
+
+Per-route Guard
+
+router.beforeEnter() : route에 진입했을 때만 실행되는 함수
+
+
+In-component Guard
+
+onBeforeRouteLeave
+ - 현재 라우트에서 다른 라우트로 이동하기 전에 실행
+ -> 사용자가 현재 페이지를 떠나는 동작에 대한 로직을 처리
+
+onBeforeRouteUpdate
+ - 이미 렌더링된 컴포넌트가 같은 라우트 내에서 업데이트되기 전에 실행
+ -> 라우트 업데이트 시 추가적인 로직을 처리
+
+
