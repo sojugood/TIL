@@ -1,6 +1,0 @@
-예금
-
-/deposit(전체)
-
-/deposit/int:pk(개월 수)/int:pk(1-기본,2-최고우대)
-
