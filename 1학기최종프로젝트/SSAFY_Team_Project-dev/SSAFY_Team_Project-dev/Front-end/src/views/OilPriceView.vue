@@ -1,6 +1,13 @@
 <template>
   <div class="w-[75%] mx-auto my-8">
-    <div class="flex justify-start space-x-4 mt-4">
+    <div v-if="isLoading" class="flex justify-center items-center h-screen">
+      <!-- 스피너 -->
+      <div class="animate-spin inline-block w-16 h-16 border-[5px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mr-4"></div>
+      <span class="text-lg font-semibold text-gray-600 dark:text-gray-300">
+        데이터 로드 중...
+      </span>
+    </div>
+    <div v-else class="flex justify-start space-x-4 mt-4">
       <div class="text-2xl">유가 시세</div>
       <button v-for="category in categories" :key="category"    @click="applyCategory(category)"
         :class="{'bg-green-500 font-extrabold': selectedCategory === category, 'bg-blue-500': selectedCategory !== category}"
@@ -36,6 +43,7 @@ const oilData = ref<OilData[]>([]);
 
 const selectedCategory = ref('경유')
 const selectedPeriod = ref('1M');
+const isLoading = ref(true);
 
 const categories = ['경유', '등유', '휘발유'];
 
@@ -91,6 +99,7 @@ const updateChart = (filteredData) => {
   if (chartRef.value) {
     chartRef.value.data.labels = filteredData.map(data => data.basDt);
     chartRef.value.data.datasets[0].data = filteredData.map(data => data.wtAvgPrcDisc);
+    chartRef.value.data.datasets[0].label = `${selectedCategory.value} 시세(원/L)`;
     applyZoom('1M'); // 유종을 변경할 때 기본적으로 1개월
     chartRef.value.update();
   }
@@ -106,7 +115,7 @@ onMounted(async () => {
       const chartData = {
         labels: oilData.value.map(data => data.basDt),
         datasets: [{
-          label: '유가 시세(￦/L)',
+          label: `${selectedCategory.value} 시세(원/L)`,
           data: oilData.value.map(data => data.wtAvgPrcDisc),
           fill: false,
           borderColor: 'green',
@@ -118,19 +127,49 @@ onMounted(async () => {
         type: 'line',
         data: chartData,
         options: {
+          hoverRadius: 18,
+          hoverBackgroundColor: 'green',
+          responsive: true,
+          interaction: {
+          intersect: false,
+          },
           scales: {
             y: {
+              ticks: {
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
               beginAtZero: false,
               grace: '5%'
             },
             x: {
               type: 'time',
               time: {
-                unit: 'day'
+                unit: 'day',
+                tooltipFormat: 'PPP',
+                displayFormats: {
+                  day: 'PP'
+                }
               },
             }
           },
           plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+              mode: 'index',
+              intersect: false,
+              bodyFont: {
+                size: 20
+              }, // 본문 폰트 사이즈
+              titleFont: {
+                size: 14
+              }, // 제목 폰트 사이즈
+            },
             zoom: {
               zoom: {
                 wheel: {
@@ -157,6 +196,8 @@ onMounted(async () => {
       applyCategory(selectedCategory.value);
     } catch (error) {
       console.error('There was an error fetching the oil data: ', error);
+    } finally {
+      isLoading.value = false; // 로딩 완료
     }
   }
 });

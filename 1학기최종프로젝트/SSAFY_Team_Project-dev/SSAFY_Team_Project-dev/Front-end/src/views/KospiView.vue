@@ -1,9 +1,17 @@
 <template>
   <div class="w-[75%] mx-auto my-8">
-    <div class="flex justify-start space-x-4 mt-4">
+    <div v-if="isLoading" class="flex justify-center items-center h-screen">
+      <!-- 스피너 -->
+      <div class="animate-spin inline-block w-16 h-16 border-[5px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mr-4"></div>
+      <span class="text-lg font-semibold text-gray-600 dark:text-gray-300">
+        데이터 로드 중...
+      </span>
+    </div>
+    <div v-else class="flex justify-start space-x-4 mt-4">
       <div class="text-2xl">KOSPI 지수</div>
       <div class="relative">
-        <button @click="showDropdown = !showDropdown" class="flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button @click="showDropdown = !showDropdown"
+          class="flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
           {{ selectedCategory }}
           <svg :class="{ 'rotate-180': showDropdown }" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke="currentColor">
@@ -48,6 +56,7 @@ const KospiData = ref<KospiData[]>([]);
 const selectedCategory = ref('코스피')
 const selectedPeriod = ref('1M');
 const showDropdown = ref(false);
+const isLoading = ref(true);
 
 const categories = ['코스피', '코스피 100', '코스피 200',
   '코스피 200 TOP 10', '코스피 200 건설', '코스피 200 경기소비재', '코스피 200 금융', '코스피 200 비중상한 20%', '코스피 200 비중상한 25%', '코스피 200 비중상한 30%', '코스피 200 산업재', '코스피 200 생활소비재', '코스피 200 에너지/화학', '코스피 200 정보기술', '코스피 200 중공업', '코스피 200 중소형주', '코스피 200 철강/소재', '코스피 200 초대형제외 지수', '코스피 200 커뮤니케이션서비스', '코스피 200 헬스케어', '코스피 50', '코스피 대형주', '코스피 소형주', '코스피 중형주', '코스피200제외 코스피지수', '건설업', '금융업', '기계', '보험', '비금속광물', '서비스업', '섬유의복', '운수장비', '운수창고업', '유통업', '음식료품', '의료정밀', '의약품', '전기가스업', '전기전자', '제조업', '종이목재', '증권', '철강금속', '통신업', '화학'];
@@ -63,7 +72,7 @@ const periods = reactive([
 function selectCategory(category) {
   selectedCategory.value = category;
   showDropdown.value = false;
-  applyCategory(category); // 이 함수는 이미 정의되어 있을 것입니다.
+  applyCategory(category);
 };
 
 const applyCategory = (Category) => {
@@ -138,19 +147,49 @@ onMounted(async () => {
         type: 'line',
         data: chartData,
         options: {
+          hoverRadius: 18,
+          hoverBackgroundColor: 'skyblue',
+          responsive: true,
+          interaction: {
+            intersect: false,
+          },
           scales: {
             y: {
+              ticks: {
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
               beginAtZero: false,
               grace: '5%'
             },
             x: {
               type: 'time',
               time: {
-                unit: 'day'
+                unit: 'day',
+                tooltipFormat: 'PPP',
+                displayFormats: {
+                  day: 'PP'
+                }
               },
             }
           },
           plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+              mode: 'index',
+              intersect: false,
+              bodyFont: {
+                size: 20
+              }, // 본문 폰트 사이즈
+              titleFont: {
+                size: 14
+              }, // 제목 폰트 사이즈
+            },
             zoom: {
               zoom: {
                 wheel: {
@@ -173,10 +212,12 @@ onMounted(async () => {
         }
       });
 
-      // 기본적으로 첫 번째 유종을 표시
+      // 기본적으로 코스피 표시
       applyCategory(selectedCategory.value);
     } catch (error) {
-      console.error('There was an error fetching the oil data: ', error);
+      console.error('There was an error fetching the kospi data: ', error);
+    } finally {
+      isLoading.value = false; // 로딩 완료
     }
   }
 });

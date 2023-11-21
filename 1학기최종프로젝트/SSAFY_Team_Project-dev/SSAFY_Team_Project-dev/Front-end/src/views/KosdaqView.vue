@@ -1,12 +1,30 @@
 <template>
   <div class="w-[75%] mx-auto my-8">
-    <div class="flex justify-start space-x-4 mt-4">
+    <div v-if="isLoading" class="flex justify-center items-center h-screen">
+      <!-- 스피너 -->
+      <div class="animate-spin inline-block w-16 h-16 border-[5px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mr-4"></div>
+      <span class="text-lg font-semibold text-gray-600 dark:text-gray-300">
+        데이터 로드 중...
+      </span>
+    </div>
+    <div v-else class="flex justify-start space-x-4 mt-4">
       <div class="text-2xl">KOSDAQ 지수</div>
-      <button v-for="category in categories" :key="category"    @click="applyCategory(category)"
-        :class="{'bg-green-500 font-extrabold': selectedCategory === category, 'bg-blue-500': selectedCategory !== category}"
-        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        {{ category }}
-      </button>
+      <div class="relative">
+        <button @click="showDropdown = !showDropdown" class="flex items-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          {{ selectedCategory }}
+          <svg :class="{ 'rotate-180': showDropdown }" class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div v-if="showDropdown"
+          class="absolute mt-2 py-1 w-48 bg-white border border-gray-200 rounded shadow-xl overflow-auto max-h-60">
+          <a v-for="category in categories" :key="category" @click="selectCategory(category)"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+            {{ category }}
+          </a>
+        </div>
+      </div>
     </div>
     <div class="flex justify-start space-x-4 mt-4">
       <button v-for="period in periods" :key="period.value" @click="applyZoom(period.value)"
@@ -36,6 +54,8 @@ const KosdaqData = ref<KosdaqData[]>([]);
 
 const selectedCategory = ref('코스닥')
 const selectedPeriod = ref('1M');
+const showDropdown = ref(false);
+const isLoading = ref(true);
 
 const categories = ['코스닥', '코스닥 150', '코스닥 150 산업재', '코스닥 150 소재', '코스닥 150 자유소비재', '코스닥 150 정보기술', '코스닥 150 커뮤니케이션서비스', '코스닥 150 필수소비재', '코스닥 150 헬스케어', '코스닥 IT', '코스닥 글로벌', '코스닥 기술성장기업부', '코스닥 대형주', '코스닥 벤처기업부', '코스닥 소형주', '코스닥 우량기업부', '코스닥 중견기업부', '코스닥 중형주', 'IT H/W', 'IT S/W & SVC', 'IT부품', '건설', '금속', '금융', '기계·장비', '기타서비스', '기타제조', '디지털컨텐츠', '반도체', '방송서비스', '비금속', '섬유·의류', '소프트웨어', '오락·문화', '운송', '운송장비·부품', '유통', '음식료·담배', '의료·정밀기기', '인터넷', '일반전기전자', '정보기기', '제약', '제조업', '종이·목재', '출판·매체복제', '컴퓨터서비스', '통신방송서비스', '통신서비스', '통신장비'];
 
@@ -46,6 +66,12 @@ const periods = reactive([
   { label: '1년', value: '1Y' },
   { label: '전체', value: 'ALL' }
 ]);
+
+function selectCategory(category) {
+  selectedCategory.value = category;
+  showDropdown.value = false;
+  applyCategory(category);
+};
 
 const applyCategory = (Category) => {
   selectedCategory.value = Category
@@ -119,19 +145,49 @@ onMounted(async () => {
         type: 'line',
         data: chartData,
         options: {
+          hoverRadius: 18,
+          hoverBackgroundColor: 'skyblue',
+          responsive: true,
+          interaction: {
+          intersect: false,
+          },
           scales: {
             y: {
+              ticks: {
+                font: {
+                  size: 18,
+                  weight: 'bold'
+                }
+              },
               beginAtZero: false,
               grace: '5%'
             },
             x: {
               type: 'time',
               time: {
-                unit: 'day'
+                unit: 'day',
+                tooltipFormat: 'PPP',
+                displayFormats: {
+                  day: 'PP'
+                }
               },
             }
           },
           plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: true,
+              mode: 'index',
+              intersect: false,
+              bodyFont: {
+                size: 20
+              }, // 본문 폰트 사이즈
+              titleFont: {
+                size: 14
+              }, // 제목 폰트 사이즈
+            },
             zoom: {
               zoom: {
                 wheel: {
@@ -158,6 +214,8 @@ onMounted(async () => {
       applyCategory(selectedCategory.value);
     } catch (error) {
       console.error('There was an error fetching the kosdaq data: ', error);
+    } finally {
+      isLoading.value = false; // 로딩 완료
     }
   }
 });

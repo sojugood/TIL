@@ -15,11 +15,11 @@ from django.views.decorators.cache import cache_page
 
 # 일반 상품(석유, 금)
 # Url
-BASE_URL = "https://apis.data.go.kr/1160100/service/GetGeneralProductInfoService"
+BASE_URL = "http://apis.data.go.kr/1160100/service/GetGeneralProductInfoService"
 OIL_URL = "/getOilPriceInfo"
 GOLD_URL = "/getGoldPriceInfo"
 # 주가지수시세
-STOCK_URL = 'https://apis.data.go.kr/1160100/service/GetMarketIndexInfoService/getStockMarketIndex'
+STOCK_URL = 'http://apis.data.go.kr/1160100/service/GetMarketIndexInfoService/getStockMarketIndex'
 # api_key
 API_KEY3 = settings.API_KEY3
 
@@ -93,6 +93,7 @@ def save_gold(request):
         for item in items:
             item['basDt'] = datetime.strptime(item['basDt'], '%Y%m%d').date()
             serializer = GoldSerializer(data=item)
+            
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
         return JsonResponse({'message': 'okay'})
@@ -107,7 +108,7 @@ def save_gold(request):
 
 # DB에 저장(주가지수시세)
 @api_view(['GET'])
-@permission_classes([IsAdminUser])
+# @permission_classes([IsAdminUser])
 def save_stock(request):
     try:
         url = STOCK_URL
