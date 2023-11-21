@@ -63,7 +63,27 @@ const router = createRouter({
       path: '/oilprice',
       name: 'oilprice',
       component: () => import('../views/OilPriceView.vue')
-    }
+    },
+    {
+      path: '/kospi',
+      name: 'kospi',
+      component: () => import('../views/KospiView.vue')
+    },
+    {
+      path: '/kosdaq',
+      name: 'kosdaq',
+      component: () => import('../views/KosdaqView.vue')
+    },
+    {
+      path: '/krx',
+      name: 'krx',
+      component: () => import('../views/KrxView.vue')
+    },
+    {
+      path: '/theme',
+      name: 'theme',
+      component: () => import('../views/ThemeView.vue')
+    },
   ]
 })
 

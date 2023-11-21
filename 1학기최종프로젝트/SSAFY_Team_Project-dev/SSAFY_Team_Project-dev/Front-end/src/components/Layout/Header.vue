@@ -25,6 +25,14 @@
         >금 시세</RouterLink>
         <RouterLink to="/oilprice" class="navLink"
         >석유 시세</RouterLink>
+        <RouterLink to="/kospi" class="navLink"
+        >KOSPI 지수</RouterLink>
+        <RouterLink to="/kosdaq" class="navLink"
+        >KOSDAQ 지수</RouterLink>
+        <RouterLink to="/krx" class="navLink"
+        >KRX 지수</RouterLink>
+        <RouterLink to="/theme" class="navLink"
+        >테마 지수</RouterLink>
         <RouterLink to="/article" class="navLink"
         >게시판</RouterLink>
       </PopoverGroup>
@@ -63,6 +71,14 @@
               >금 시세</RouterLink>
               <RouterLink to="/oilprice" class="dialogLink"
               >석유 시세</RouterLink>
+              <RouterLink to="/kospi" class="dialogLink"
+              >KOSPI 지수</RouterLink>
+              <RouterLink to="/kosdaq" class="dialogLink"
+              >KOSDAQ 지수</RouterLink>
+              <RouterLink to="/krx" class="dialogLink"
+              >KRX 지수</RouterLink>
+              <RouterLink to="/theme" class="dialogLink"
+              >테마 지수</RouterLink>
               <RouterLink to="/article" class="dialogLink"
               >게시판</RouterLink>
             </div>
