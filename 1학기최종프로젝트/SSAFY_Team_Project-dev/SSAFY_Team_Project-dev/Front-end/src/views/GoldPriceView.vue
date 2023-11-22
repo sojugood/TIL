@@ -94,7 +94,8 @@ onMounted(async () => {
         datasets: [{
           label: '국내 금 시세(원/g)',
           data: goldData.value.map(data => data.clpr),
-          fill: false,
+          fill: true,
+          backgroundColor: 'rgba(255, 223, 0, 0.2)',
           borderColor: 'gold',
           tension: 0.1
         }]

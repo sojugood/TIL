@@ -117,7 +117,8 @@ onMounted(async () => {
         datasets: [{
           label: `${selectedCategory.value} 시세(원/L)`,
           data: oilData.value.map(data => data.wtAvgPrcDisc),
-          fill: false,
+          fill: true,
+          backgroundColor: 'rgba(0,128,0, 0.2)',
           borderColor: 'green',
           tension: 0.1
         }]

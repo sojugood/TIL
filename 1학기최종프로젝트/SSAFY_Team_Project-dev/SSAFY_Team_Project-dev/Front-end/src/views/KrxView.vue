@@ -135,7 +135,8 @@ onMounted(async () => {
         datasets: [{
           label: selectedCategory.value,
           data: KrxData.value.map(data => data.clpr),
-          fill: false,
+          fill: true,
+          backgroundColor: 'rgba(135, 206, 235, 0.2)',
           borderColor: 'skyblue',
           tension: 0.1
         }]
